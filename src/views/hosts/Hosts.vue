@@ -1,8 +1,33 @@
 <template>
-    <div>Hello</div>
+    <div>
+        <appHost v-for="host in hosts" :host="host" :key="host.id">
+        </appHost>
+    </div>
 </template>
 <script>
-export default {
+import Host from './Host'
 
+export default {
+  data () {
+    return {
+    }
+  },
+
+  components: {
+    appHost: Host
+  },
+
+  methods: {
+  },
+
+  computed: {
+    hosts () {
+      return this.$store.getters.hosts
+    }
+  },
+
+  created () {
+    this.$store.dispatch('FETCH_HOSTS')
+  }
 }
 </script>
